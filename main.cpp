@@ -8,7 +8,7 @@ int main() {
     std::default_random_engine generator (std::time(NULL));
     std::srand(std::time(NULL));
     std::normal_distribution <double> palautusjakauma (0.95, 0.07);
-    std::normal_distribution <double> panosjakauma (43.35, 12.15);
+    std::normal_distribution <double> panosjakauma (225.85, 61.15);
     
     std::map <double, double> tulokset;
     
@@ -36,27 +36,26 @@ int main() {
     std::map <double, double> :: iterator it = tulokset.begin();
     
     double pelattu = 0;
-    double tulos = 0;
-    double t_tulos = 0;
+    double valitulos = 0;
+    double kokonaistulos = 0;
     
     while (it != tulokset.end()) {
         pelattu += it->first;
-        t_tulos = (it->second - it->first);
+        valitulos = (it->second - it->first);
         
-        tulos += t_tulos;
+        kokonaistulos += valitulos;
         
-         if (t_tulos > maksimi_voitto) {
-            maksimi_voitto =  t_tulos;
-        } else if (t_tulos < maksimi_tappio) {
-            maksimi_tappio = t_tulos;
+         if (valitulos > maksimi_voitto) {
+            maksimi_voitto =  valitulos;
+        } else if (valitulos < maksimi_tappio) {
+            maksimi_tappio = valitulos;
         }
         
         ++it;
     }
     
-    std::cout << "Yhteensä pelattiin " << pelattu << " euroa, josta tuli " << tulos << " euroa" << std::endl;
+    std::cout << "Yhteensä pelattiin " << pelattu << " euroa, josta tuli " << kokonaistulos << " euroa" << std::endl;
     std::cout << "maksimi tappio = " << maksimi_tappio << " maksimi voitto = " << maksimi_voitto << std::endl;
     
     return 0;
 }
-
